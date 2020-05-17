@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -25,19 +28,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        temp=loadArray("Links",MainActivity.this);
-        urls=new String[temp.length];
-
-        for(int i=temp.length-1;i>=0;i--){
-            urls[temp.length-1-i]=temp[i];
-        }
+        urls=loadArray("Links",MainActivity.this);
 
         if(urls.length!=0){
 
             setContentView(R.layout.activity_main);
 
             recyclerView=findViewById(R.id.recyclerView);
-            MyAdapter myAdapter=new MyAdapter(this,urls);
+            final MyAdapter myAdapter=new MyAdapter(this,urls);
             recyclerView.setAdapter(myAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -50,10 +48,50 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            myAdapter.onItemClickListener2(new MyAdapter.OnItemClickListener2() {
+                @Override
+                public void onItemClick2(int position) {
+
+                    urls=loadArray("Links",MainActivity.this);
+                    if(urls.length>1)
+                    {
+                    for(int i=position;i<urls.length-1;i++){
+                        urls[i]=urls[i+1];
+                    }
+                    String temp[]=new String[urls.length-1];
+                    for(int i=0;i<urls.length-1;i++){
+                        temp[i]=urls[i];
+                    }
+                    saveArray(temp,"Links",MainActivity.this);
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                    }
+                    else{
+                        String a[]=new String[0];
+                        saveArray(a,"Links",MainActivity.this);
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+
+                }
+            });
+
         }
         else{
             setContentView(R.layout.activity_main2);
         }
+
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                pullToRefresh.setRefreshing(true);
+            }
+        });
 
     }
 

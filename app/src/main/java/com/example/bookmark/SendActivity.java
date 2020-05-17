@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,29 +24,13 @@ public class SendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
         onSharedIntent();
+        Toast.makeText(this, "Bookmarked", Toast.LENGTH_SHORT).show();
         finish();
-
-        recyclerView=findViewById(R.id.recyclerView);
-
-        temp=loadArray("Links",SendActivity.this);
-        urls=new String[temp.length];
-
-        for(int i=temp.length-1;i>=0;i--){
-            urls[temp.length-1-i]=temp[i];
-        }
-        if(urls.length!=0){
-            MyAdapter myAdapter=new MyAdapter(this,urls);
-            recyclerView.setAdapter(myAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        }
-
     }
     private void onSharedIntent(){
         Intent receivedIntent=getIntent();
         String receivedAction=receivedIntent.getAction();
-        String receivedType=receivedIntent.getType();
 
         if(receivedAction.equals(Intent.ACTION_SEND)){
             String url=receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
@@ -69,10 +54,10 @@ public class SendActivity extends AppCompatActivity {
                 urls=loadArray("Links",SendActivity.this);
                 int n=urls.length;
                 String s[]=new String[n+1];
-                for(int i=0;i<n;i++){
-                    s[i]=urls[i];
+                for(int i=1;i<=n;i++){
+                    s[i]=urls[i-1];
                 }
-                s[n]=b;
+                s[0]=b;
                 saveArray(s,"Links",SendActivity.this);
             }
         }
