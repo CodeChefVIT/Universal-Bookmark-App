@@ -20,13 +20,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     String urls[];
     Context context;
     private OnItemClickListener mListener;
+    private OnItemClickListener2 mListener2;
 
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
+    public interface OnItemClickListener2{
+        void onItemClick2(int position);
+    }
 
     public void onItemClickListener(OnItemClickListener listener){
         mListener=listener;
+    }
+    public void onItemClickListener2(OnItemClickListener2 listener){
+        mListener2=listener;
     }
 
     public MyAdapter(Context ct, String links[]){
@@ -39,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(context);
         View view=inflater.inflate(R.layout.item, parent, false);
-        return new MyViewHolder(view, mListener);
+        return new MyViewHolder(view, mListener, mListener2);
     }
 
     @Override
@@ -48,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.webview.setWebViewClient(new WebViewClient());
         holder.webview.loadUrl(urls[position]);
         holder.go_to.setImageResource(R.drawable.go_to);
-
+        holder.bin.setImageResource(R.drawable.bin);
     }
 
     @Override
@@ -59,24 +66,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         WebView webview;
-        ImageView go_to;
+        ImageView go_to, bin;
 
-        public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener){
+        public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener, final OnItemClickListener2 listener2){
             super(itemView);
             webview=itemView.findViewById(R.id.webview);
             go_to=itemView.findViewById(R.id.go_to);
+            bin=itemView.findViewById(R.id.bin);
             webview.getSettings().setUseWideViewPort(true);
             webview.getSettings().setJavaScriptEnabled(true);
             webview.getSettings().setLoadWithOverviewMode(true);
             WebSettings settings = webview.getSettings();
             settings.setDomStorageEnabled(true);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            go_to.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(getAdapterPosition());
                 }
             });
+
+            bin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener2.onItemClick2((getAdapterPosition()));
+                }
+            });
+
+
         }
 
     }

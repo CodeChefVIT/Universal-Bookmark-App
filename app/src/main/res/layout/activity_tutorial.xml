@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".TutorialActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:textColor="#fff"
+        android:text="Here's a short tutorial to\nget you started..."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="351dp"
+            android:layout_height="409dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/tutorial1" />
+
+        <ImageView
+            android:layout_width="364dp"
+            android:layout_height="451dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/tutroial2" />
+
+        <ImageView
+            android:layout_width="346dp"
+            android:layout_height="630dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tutorial3" />
+
+        <Button
+            android:layout_width='match_parent'
+            android:layout_height="50dp"
+            android:id="@+id/get_started"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_back"
+            android:text="Get Started   "
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_text_back"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>
