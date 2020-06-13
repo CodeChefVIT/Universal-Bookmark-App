@@ -1,11 +1,11 @@
-package com.example.bookmark;
+package com.example.bookmark.Backend;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Users {
 
-    Users(String email, String username, String password) {
+    public Users(String email, String username, String password, String auth_token) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -21,6 +21,9 @@ public class Users {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("auth_token")
+    @Expose
+    private String auth_token;
 
     public String getEmail() {
         return email;
@@ -46,4 +49,11 @@ public class Users {
         this.password = password;
     }
 
+    public String getAuth_token() {
+        return auth_token;
+    }
+
+    public void setAuth_token(String auth_token) {
+        this.auth_token = auth_token;
+    }
 }

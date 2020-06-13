@@ -1,8 +1,10 @@
-package com.example.bookmark;
+package com.example.bookmark.Authnetication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.bookmark.R;
 
 public class Login extends AppCompatActivity {
 

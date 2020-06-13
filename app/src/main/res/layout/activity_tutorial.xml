@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".TutorialActivity">
+    tools:context=".Starters.TutorialActivity">
 
     <TextView
         android:layout_width="wrap_content"
