@@ -9,17 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 
 public class SendActivity extends AppCompatActivity {
 
-    private WebView webView;
-    private String urls[],temp[];
-    private RecyclerView recyclerView;
-
+    private String urls[], ent[], res[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +54,32 @@ public class SendActivity extends AppCompatActivity {
                 }
                 s[0]=b;
                 saveArray(s,"Links",SendActivity.this);
+
+                for(int i=0;i<b.length()-3;i++){
+                    String k=b.substring(i,i+3);
+                    if(k.equals("you")||k.equals("ins")||k.equals("fac")||k.equals("twi")||k.equals("pin")){
+                        ent=loadArray("Entertainment",SendActivity.this);
+                        int p=ent.length;
+                        String h[]=new String[p+1];
+                        for(int j=1;j<=p;j++){
+                            h[j]=ent[j-1];
+                        }
+                        h[0]=b;
+                        saveArray(h,"Entertainment",SendActivity.this);
+                        break;
+                    }
+                    if(k.equals("sta")||k.equals("med")||k.equals("gee")||k.equals("w3s")){
+                        res=loadArray("Research",SendActivity.this);
+                        int p=res.length;
+                        String h[]=new String[p+1];
+                        for(int j=1;j<=p;j++){
+                            h[j]=ent[j-1];
+                        }
+                        h[0]=b;
+                        saveArray(h,"Research",SendActivity.this);
+                        break;
+                    }
+                }
             }
         }
     }

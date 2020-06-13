@@ -20,8 +20,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private WebView webView;
-    private String urls[],temp[];
+    private String urls[];
     private RecyclerView recyclerView;
 
     @Override

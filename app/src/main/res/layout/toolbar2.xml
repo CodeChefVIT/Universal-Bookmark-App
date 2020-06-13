@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:background="#fff"
     android:layout_height="match_parent"
-    android:id="@+id/toolbar">
+    android:id="@+id/toolbar2">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -15,18 +15,29 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/icon"/>
+            android:src="@drawable/icon"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/title"
             android:layout_marginStart="2dp"
             android:fontFamily="@font/butterfly_kids"
-            android:text="Bookmarks     "
+            android:text="Bookmarks"
             android:textColor="#401461"
+            android:layout_centerHorizontal="true"
             android:textSize="32sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/change_list"
+            android:id="@+id/list"
+            android:background="#fff"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
 
 </Toolbar>
