@@ -8,6 +8,6 @@ import retrofit2.http.POST;
 
 public interface ApiHolder {
 
-    @POST("users")
-    Call<Users> createUser(@Body RequestBody user);
+    @POST("login")
+    Call<Users> createUser(@Body Users user);
 }

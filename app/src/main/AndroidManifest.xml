@@ -18,21 +18,25 @@
         <activity android:name=".Main.Main">
 
         </activity>
-        <activity android:name=".Authnetication.Register">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Authentication.Register">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".Authnetication.Login" />
+        <activity android:name=".Authentication.Login" />
         <activity
             android:name=".Starters.TutorialActivity"
             android:noHistory="true" />
         <activity
             android:name=".Starters.TitleActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".Main.SendActivity"
             android:theme="@android:style/Theme.NoDisplay">

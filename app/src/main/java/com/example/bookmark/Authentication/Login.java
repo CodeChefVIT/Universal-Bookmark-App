@@ -1,4 +1,4 @@
-package com.example.bookmark.Authnetication;
+package com.example.bookmark.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
