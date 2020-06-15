@@ -1,7 +1,8 @@
-package com.example.bookmark;
+package com.example.bookmark.Main;
 
 import android.os.Bundle;
 
+import com.example.bookmark.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

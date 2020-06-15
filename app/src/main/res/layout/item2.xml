@@ -43,14 +43,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/bin"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:padding="2dp" />
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -7,7 +7,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".Login">
+    tools:context=".Authnetication.Login">
 
     <ImageView
         android:id="@+id/title_image"
