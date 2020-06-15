@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.bookmark.Backend.TinyDB;
+import com.example.bookmark.Main.Main;
 import com.example.bookmark.Main.SampleActivity;
 import com.example.bookmark.R;
 
@@ -23,13 +24,13 @@ public class TutorialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutorial);
 
         TinyDB tinyDB=new TinyDB(this);
-        tinyDB.putBoolean("State", false);
+        tinyDB.putBoolean("State", true);
 
         button=findViewById(R.id.get_started);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(TutorialActivity.this, SampleActivity.class);
+                Intent intent=new Intent(TutorialActivity.this, Main.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.bookmark.Authnetication;
+package com.example.bookmark.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,6 @@ import com.example.bookmark.Backend.ApiHolder;
 import com.example.bookmark.Backend.Users;
 import com.example.bookmark.R;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +34,7 @@ public class Register extends AppCompatActivity {
         register=findViewById(R.id.register);
 
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("http://ubmcc.herokuapp.com/auth/")
+                .baseUrl("http://ubmcc.herokuapp.com/auth/token/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -57,17 +54,12 @@ public class Register extends AppCompatActivity {
         String pass=password.getText().toString().trim();
         String mail=email.getText().toString();
 
-        RequestBody requestBody=new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("password", pass)
-                .addFormDataPart("username", name)
-                .addFormDataPart("email", mail)
-                .build();
-
-        apiHolder.createUser(requestBody).enqueue(new Callback<Users>() {
+        Users user=new Users(mail, name, pass);
+        Call<Users> call=apiHolder.createUser(user);
+        call.enqueue(new Callback<Users>() {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
-                Toast.makeText(Register.this, response.code(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, response.message(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -22,7 +22,7 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample);
+        setContentView(R.layout.activity_main);
 
         final TinyDB tinyDB=new TinyDB(getApplicationContext());
         final ArrayList<String> urls = tinyDB.getListString("Links");

@@ -15,7 +15,7 @@ import com.example.bookmark.R;
 
 public class TitleActivity extends AppCompatActivity {
 
-    boolean state=true;
+    boolean state=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
