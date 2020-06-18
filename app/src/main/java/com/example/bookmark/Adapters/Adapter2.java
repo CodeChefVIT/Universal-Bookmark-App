@@ -2,6 +2,8 @@ package com.example.bookmark.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +87,15 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             }
         });
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri=Uri.parse(urls.get(position));
+                Intent intent=new Intent(Intent.ACTION_VIEW, uri);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -117,6 +128,8 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
     private String getWebsite(String url){
         int i, flag=0;
         String site="";
+        if(url.contains("youtu"))
+            return "Youtube";
         for(i=0;i<url.length()-1;i++){
             if(url.charAt(i)=='.')
                 flag++;

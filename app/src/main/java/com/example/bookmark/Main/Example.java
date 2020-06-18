@@ -3,16 +3,15 @@ package com.example.bookmark.Main;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.bookmark.Adapters.Adapter;
 import com.example.bookmark.Backend.ApiHolder;
 import com.example.bookmark.Backend.Posts;
 import com.example.bookmark.Backend.TinyDB;
 import com.example.bookmark.R;
+import com.example.bookmark.Adapters.Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +22,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SampleActivity extends AppCompatActivity {
-
-    SwipeRefreshLayout swipeRefreshLayout;
-    ArrayList<String> addresses=new ArrayList<>();
+public class Example extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_example);
 
-        final TinyDB tinyDB=new TinyDB(getApplicationContext());
+        RecyclerView recyclerView=findViewById(R.id.recyclerView);
 
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("http://ubmcc.herokuapp.com/api/")
@@ -41,6 +37,8 @@ public class SampleActivity extends AppCompatActivity {
                 .build();
 
         final ApiHolder apiHolder=retrofit.create(ApiHolder.class);
+        final TinyDB tinyDB=new TinyDB(getApplicationContext());
+        final ArrayList<String> addresses=new ArrayList<>();
 
         Call<List<Posts>> call=apiHolder.getURLs("Token "+tinyDB.getString("Token"));
         call.enqueue(new Callback<List<Posts>>() {
@@ -49,30 +47,20 @@ public class SampleActivity extends AppCompatActivity {
                 List<Posts> posts=response.body();
                 for(Posts post1:posts) {
                     addresses.add(post1.getUrl());
-                    Toast.makeText(SampleActivity.this, addresses.get(0), Toast.LENGTH_SHORT).show();
                 }
+                tinyDB.putListString("URLs", addresses);
             }
 
             @Override
             public void onFailure(Call<List<Posts>> call, Throwable t) {
-                Toast.makeText(SampleActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Example.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        //final Adapter adapter=new Adapter(getApplicationContext(), urls);
-        //recyclerView.setAdapter(adapter);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //Toast.makeText(SampleActivity.this, urls.get(0), Toast.LENGTH_SHORT).show();
+        ArrayList<String> urls=tinyDB.getListString("URLs");
+        Adapter adapter=new Adapter(this, urls);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        swipeRefreshLayout=findViewById(R.id.refresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                finish();
-                startActivity(getIntent());
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
     }
 }

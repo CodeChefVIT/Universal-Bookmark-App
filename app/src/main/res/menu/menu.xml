@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listChange"
+        android:title="Change list view" />
+
+    <item
+        android:id="@+id/sync"
+        android:title="Sync posts" />
+
+    <item
+        android:id="@+id/download"
+        android:title="Download synced posts" />
+
+    <item
+        android:id="@+id/signOut"
+        android:title="Sign out" />
+
+</menu>

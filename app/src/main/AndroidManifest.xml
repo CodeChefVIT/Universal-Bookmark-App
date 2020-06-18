@@ -12,16 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Main.SampleActivity">
+        <activity android:name=".Main.Example">
 
         </activity>
         <activity android:name=".Main.Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Main.SampleActivity">
 
         </activity>
-        <activity android:name=".Authentication.Register">
-
-        </activity>
-        <activity android:name=".Authentication.Login" />
+        <activity android:name=".Authentication.Register"></activity>
+        <activity android:name=".Authentication.Login"></activity>
         <activity
             android:name=".Starters.TutorialActivity"
             android:noHistory="true" />
@@ -30,13 +36,7 @@
             android:noHistory="true"
             android:theme="@style/AppTheme">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
         <activity
             android:name=".Main.SendActivity"
             android:theme="@android:style/Theme.NoDisplay">

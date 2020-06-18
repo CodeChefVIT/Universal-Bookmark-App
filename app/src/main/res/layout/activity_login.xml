@@ -41,12 +41,20 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/progress"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"/>
+
     <EditText
-        android:id="@+id/email_input"
+        android:id="@+id/name_input"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:hint="Email"
+        android:layout_marginTop="20dp"
+        android:hint="Username"
         android:layout_gravity="center_horizontal"/>
 
     <EditText
@@ -60,9 +68,10 @@
     <Button
         android:id="@+id/login"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/button_back"
         android:text="Login"
+        android:fontFamily="serif"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
         android:textColor="@drawable/button_text_back"
@@ -70,7 +79,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/register_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -78,5 +87,22 @@
         android:layout_gravity="center_horizontal"
         android:text="New? Register here!"
         android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/skip"
+            android:fontFamily="casual"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
