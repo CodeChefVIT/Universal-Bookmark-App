@@ -15,29 +15,19 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/icon"
-            android:layout_toLeftOf="@+id/head"/>
+            android:layout_marginStart="95dp"
+            android:id="@+id/logo"/>
 
         <TextView
+            android:id="@+id/head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:fontFamily="@font/butterfly_kids"
             android:text="Bookmarks"
-            android:id="@+id/head"
+            android:layout_toRightOf="@+id/logo"
             android:textColor="#401461"
-            android:layout_centerHorizontal="true"
             android:textSize="32sp"
             android:textStyle="bold" />
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/list"
-            android:id="@+id/change_list"
-            android:background="@android:color/transparent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-
 
     </RelativeLayout>
 
