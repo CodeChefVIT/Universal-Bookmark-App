@@ -3,6 +3,7 @@ package com.example.bookmark.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +11,29 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookmark.Backend.ApiHolder;
 import com.example.bookmark.Backend.TinyDB;
+import com.example.bookmark.Favicon.Icon;
+import com.example.bookmark.Favicon.ImageURL;
+import com.example.bookmark.Main.TestActivity;
 import com.example.bookmark.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
 
@@ -41,13 +54,13 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull Adapter2.ViewHolder holder, final int position) {
-        holder.webView.setWebViewClient(new WebViewClient());
-        holder.webView.loadUrl(urls.get(position));
 
         String url=urls.get(position);
         String site=getWebsite(url);
         holder.website.setText(site);
         holder.link.setText(url);
+
+        setImage(holder.imageView, url);
 
         holder.bin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +118,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        WebView webView;
+        ImageView imageView;
         ImageView bin;
         TextView website, link;
 
@@ -113,13 +126,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            webView=itemView.findViewById(R.id.webview);
-            webView.getSettings().setUseWideViewPort(true);
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.getSettings().setLoadWithOverviewMode(true);
-            WebSettings settings = webView.getSettings();
-            settings.setDomStorageEnabled(true);
-
+            imageView=itemView.findViewById(R.id.favicon);
             bin=itemView.findViewById(R.id.bin);
             website=itemView.findViewById(R.id.website);
             link=itemView.findViewById(R.id.link);
@@ -130,6 +137,8 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
         String site="";
         if(url.contains("youtu"))
             return "Youtube";
+        if(url.contains("stack"))
+            return "StackOverflow";
         for(i=0;i<url.length()-1;i++){
             if(url.charAt(i)=='.')
                 flag++;
@@ -142,5 +151,29 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             }
         }
         return site;
+    }
+
+    private void setImage(final ImageView image, String url){
+
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl("https://besticon-demo.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiHolder apiHolder=retrofit.create(ApiHolder.class);
+        Call<ImageURL> call=apiHolder.getFavicon("allicons.json?url="+url);
+        call.enqueue(new Callback<ImageURL>() {
+            @Override
+            public void onResponse(Call<ImageURL> call, Response<ImageURL> response) {
+                List<Icon> URLs=response.body().getIcons();
+                Picasso.get().load(URLs.get(0).getUrl()).into(image);
+            }
+
+            @Override
+            public void onFailure(Call<ImageURL> call, Throwable t) {
+
+            }
+        });
+
     }
 }

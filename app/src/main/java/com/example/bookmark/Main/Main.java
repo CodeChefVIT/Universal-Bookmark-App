@@ -2,6 +2,9 @@ package com.example.bookmark.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.bookmark.Authentication.Login;
 import com.example.bookmark.Backend.TinyDB;
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 public class Main extends AppCompatActivity {
 
     TinyDB tinyDB;
+    MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         tinyDB=new TinyDB(getApplicationContext());
-        categorize();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -38,29 +41,6 @@ public class Main extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        TinyDB tinyDB=new TinyDB(getApplicationContext());
-        tinyDB.putBoolean("Flag", false);
-    }
-
-    private void categorize(){
-        ArrayList<String> links=tinyDB.getListString("Links");
-        ArrayList<String> ent=new ArrayList<>();
-        ArrayList<String> res=new ArrayList<>();
-        for(String link:links){
-            for(int i=0;i<link.length()-3;i++){
-                String k=link.substring(i,i+3);
-                if(k.equals("you")||k.equals("ins")||k.equals("fac")||k.equals("twi")||k.equals("pin")){
-                    ent.add(link);
-                    break;
-                }
-                if(k.equals("sta")||k.equals("med")||k.equals("gee")||k.equals("w3s")){
-                    res.add(link);
-                    break;
-                }
-            }
-        }
-        tinyDB.putListString("Entertainment", ent);
-        tinyDB.putListString("Research", res);
     }
 
 }
