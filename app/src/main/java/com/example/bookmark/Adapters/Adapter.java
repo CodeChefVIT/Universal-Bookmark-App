@@ -56,36 +56,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             public void onClick(View v) {
 
                 TinyDB tinyDB=new TinyDB(context);
-                String b=urls.get(position);
-                int flag=0;
-
-                for(int i=0;i<b.length()-3;i++){
-                    String k=b.substring(i,i+3);
-                    if(k.equals("you")||k.equals("ins")||k.equals("fac")||k.equals("twi")||k.equals("pin")){
-                        ArrayList<String> ent=urls;
-                        ent.remove(b);
-                        tinyDB.putListString("Entertainment", ent);
-                        flag=1;
-                        break;
-                    }
-                    else if(k.equals("sta")||k.equals("med")||k.equals("gee")||k.equals("w3s")){
-                        ArrayList<String> res=urls;
-                        res.remove(b);
-                        tinyDB.putListString("Research", res);
-                        flag=1;
-                        break;
-                    }
-                }
-
-                if(flag==0){
-                    ArrayList<String> mis=urls;
-                    mis.remove(b);
-                    tinyDB.putListString("Links", mis);
-                }
-
+                ArrayList<String> links=tinyDB.getListString("Links");
+                links.remove(urls.get(position));
+                urls.remove(position);
                 notifyDataSetChanged();
-
-                tinyDB.putListString("Links", urls);
+                tinyDB.putListString("Links", links);
             }
         });
     }

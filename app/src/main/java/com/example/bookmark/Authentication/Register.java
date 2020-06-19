@@ -85,6 +85,10 @@ public class Register extends AppCompatActivity {
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if(response.message().equals("Created"))
                     loginUser(apiHolder2);
+                if(response.message().equals("Bad Request")){
+                    Toast.makeText(Register.this, "Can't authenticate with these credentials", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override

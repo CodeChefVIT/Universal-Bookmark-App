@@ -58,11 +58,25 @@ public class NotificationsFragment extends Fragment {
             reminder.setVisibility(View.VISIBLE);
 
         recyclerView = root.findViewById(R.id.recyclerView);
-        final Adapter adapter = new Adapter(getContext(), urls);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        flag=tinyDB.getInt("View");
+        if(flag==1){
+            Adapter2 adapter2=new Adapter2(getContext(), urls);
+            recyclerView.setAdapter(adapter2);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+        else{
+            Adapter adapter=new Adapter(getContext(), urls);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+
         Toolbar toolbar=root.findViewById(R.id.bar);
-        toolbar.inflateMenu(R.menu.menu);
+
+        if(tinyDB.getString("Token").length()>10)
+            toolbar.inflateMenu(R.menu.menu);
+        else
+            toolbar.inflateMenu(R.menu.menu2);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -101,13 +115,13 @@ public class NotificationsFragment extends Fragment {
             Adapter2 adapter2=new Adapter2(getContext(), urls);
             recyclerView.setAdapter(adapter2);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            flag=1;
+            tinyDB.putInt("View", 1);
         }
         else{
             Adapter adapter=new Adapter(getContext(), urls);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            flag=0;
+            tinyDB.putInt("View", 0);
         }
     }
 
@@ -136,7 +150,6 @@ public class NotificationsFragment extends Fragment {
                     addresses.add(post1.getUrl());
                 }
                 tinyDB.putListString("Links", addresses);
-                categorize();
             }
 
             @Override
@@ -205,27 +218,6 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-    }
-
-    private void categorize(){
-        ArrayList<String> links=tinyDB.getListString("Links");
-        ArrayList<String> ent=new ArrayList<>();
-        ArrayList<String> res=new ArrayList<>();
-        for(String link:links){
-            for(int i=0;i<link.length()-3;i++){
-                String k=link.substring(i,i+3);
-                if(k.equals("you")||k.equals("ins")||k.equals("fac")||k.equals("twi")||k.equals("pin")){
-                    ent.add(link);
-                    break;
-                }
-                if(k.equals("sta")||k.equals("med")||k.equals("gee")||k.equals("w3s")){
-                    res.add(link);
-                    break;
-                }
-            }
-        }
-        tinyDB.putListString("Entertainment", ent);
-        tinyDB.putListString("Research", res);
     }
 
 }

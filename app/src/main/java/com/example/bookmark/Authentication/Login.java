@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Login extends AppCompatActivity {
 
     String name, pass;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
         Button login=findViewById(R.id.login);
         TextView skip=findViewById(R.id.skip);
         TextView register=findViewById(R.id.register_here);
-        final ProgressBar progressBar=findViewById(R.id.progress);
+        progressBar=findViewById(R.id.progress);
 
         Retrofit loginRetrofit=new  Retrofit.Builder()
                 .baseUrl("http://ubmcc.herokuapp.com/auth/token/")
@@ -92,6 +93,7 @@ public class Login extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(Login.this, "User not found", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

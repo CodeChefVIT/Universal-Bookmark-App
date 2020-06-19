@@ -12,17 +12,19 @@
         android:layout_height="100dp"
         android:padding="6dp">
 
-        <WebView
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:id="@+id/webview"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="5dp"
+            android:src="@drawable/icon"
+            android:id="@+id/favicon"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/webview"
+            android:layout_toRightOf="@id/favicon"
             android:padding="4dp">
 
         <TextView

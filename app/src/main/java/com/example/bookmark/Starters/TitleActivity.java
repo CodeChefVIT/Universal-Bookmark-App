@@ -2,16 +2,13 @@ package com.example.bookmark.Starters;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.bookmark.Authentication.Login;
 import com.example.bookmark.Backend.TinyDB;
 import com.example.bookmark.Main.Main;
-import com.example.bookmark.Main.SampleActivity;
 import com.example.bookmark.R;
 
 public class TitleActivity extends AppCompatActivity {
@@ -25,6 +22,7 @@ public class TitleActivity extends AppCompatActivity {
 
         TinyDB tinyDB=new TinyDB(this);
         state=tinyDB.getBoolean("State");
+        tinyDB.putInt("View",0);
         final String token=tinyDB.getString("Token");
         final boolean flag=tinyDB.getBoolean("Flag");
 
