@@ -134,15 +134,24 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             return "Youtube";
         if(url.contains("stack"))
             return "StackOverflow";
-        for(i=0;i<url.length()-1;i++){
-            if(url.charAt(i)=='.')
-                flag++;
-            if(flag==1)
-                site=site+url.charAt(i+1);
-            if(flag==2) {
-                String firstLetter=site.substring(0, 1);
-                site=firstLetter.toUpperCase()+site.substring(1, site.length()-1);
-                break;
+        if(url.contains("www")) {
+            for (i = 0; i < url.length() - 1; i++) {
+                if (url.charAt(i) == '.')
+                    flag++;
+                if (flag == 1)
+                    site = site + url.charAt(i + 1);
+                if (flag == 2) {
+                    String firstLetter = site.substring(0, 1);
+                    site = firstLetter.toUpperCase() + site.substring(1, site.length() - 1);
+                    break;
+                }
+                return site;
+            }
+        }
+        else{
+            for(i=0;i<url.length()-2;i++){
+                if(url.substring(i,i+2).equals("//"))
+                    return url.substring(i+2, url.indexOf('.'));
             }
         }
         return site;
