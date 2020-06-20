@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TestActivity extends AppCompatActivity {
 
     ImageView imageView;
+    Button button;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,16 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         imageView=findViewById(R.id.favicon);
-        setImage(imageView, "https://stackoverflow.com/");
+        button=findViewById(R.id.button);
+        editText=findViewById(R.id.editText);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(imageView, editText.getText().toString().trim());
+            }
+        });
+
     }
 
     private void setImage(final ImageView image, String url){
@@ -46,8 +60,10 @@ public class TestActivity extends AppCompatActivity {
         call.enqueue(new Callback<ImageURL>() {
             @Override
             public void onResponse(Call<ImageURL> call, Response<ImageURL> response) {
-                List<Icon> URLs=response.body().getIcons();
-                Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                if(!response.message().equals("Not Found")) {
+                    List<Icon> URLs = response.body().getIcons();
+                    Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                }
             }
 
             @Override

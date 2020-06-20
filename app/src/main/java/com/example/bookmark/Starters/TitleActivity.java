@@ -22,8 +22,6 @@ public class TitleActivity extends AppCompatActivity {
 
         TinyDB tinyDB=new TinyDB(this);
         state=tinyDB.getBoolean("State");
-        tinyDB.putInt("View",0);
-        final String token=tinyDB.getString("Token");
         final boolean flag=tinyDB.getBoolean("Flag");
 
         Handler handler=new Handler();
