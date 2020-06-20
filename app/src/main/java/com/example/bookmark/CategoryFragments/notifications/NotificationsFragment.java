@@ -19,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookmark.Adapters.Adapter;
 import com.example.bookmark.Adapters.Adapter2;
+import com.example.bookmark.Adapters.Adapter3;
 import com.example.bookmark.Authentication.Login;
 import com.example.bookmark.Backend.ApiHolder;
 import com.example.bookmark.Backend.Posts;
@@ -61,8 +62,8 @@ public class NotificationsFragment extends Fragment {
 
         flag=tinyDB.getInt("View");
         if(flag==1){
-            Adapter2 adapter2=new Adapter2(getContext(), urls);
-            recyclerView.setAdapter(adapter2);
+            Adapter3 adapter3=new Adapter3(getContext(), urls);
+            recyclerView.setAdapter(adapter3);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
         else{
@@ -112,9 +113,10 @@ public class NotificationsFragment extends Fragment {
     }
     private void changeView(){
         if(flag==0){
-            Adapter2 adapter2=new Adapter2(getContext(), urls);
-            recyclerView.setAdapter(adapter2);
+            Adapter3 adapter3=new Adapter3(getContext(), urls);
+            recyclerView.setAdapter(adapter3);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            flag=1;
             tinyDB.putInt("View", 1);
         }
         else{
@@ -122,6 +124,7 @@ public class NotificationsFragment extends Fragment {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             tinyDB.putInt("View", 0);
+            flag=0;
         }
     }
 
@@ -158,8 +161,13 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        Intent intent=new Intent(getContext(), Main.class);
-        startActivity(intent);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent=new Intent(getContext(), Main.class);
+                startActivity(intent);
+            }
+        }, 1000);
     }
 
     private void sync(){
@@ -175,12 +183,12 @@ public class NotificationsFragment extends Fragment {
         call.enqueue(new Callback<URL>() {
             @Override
             public void onResponse(Call<URL> call, Response<URL> response) {
-                Toast.makeText(getContext(), response.message(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onFailure(Call<URL> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -192,7 +200,14 @@ public class NotificationsFragment extends Fragment {
                 for(String b:links)
                     uploadURL(b);
             }
-        }, 200);
+        }, 1500);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), "Synced", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
 
     }
 
@@ -209,7 +224,7 @@ public class NotificationsFragment extends Fragment {
         call.enqueue(new Callback<URL>() {
             @Override
             public void onResponse(Call<URL> call, Response<URL> response) {
-                Toast.makeText(getContext(), response.message(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

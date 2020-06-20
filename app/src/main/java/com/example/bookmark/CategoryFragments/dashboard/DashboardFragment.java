@@ -27,8 +27,6 @@ import com.example.bookmark.Main.Main;
 import com.example.bookmark.R;
 import com.example.bookmark.Backend.TinyDB;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,8 +161,13 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        Intent intent=new Intent(getContext(), Main.class);
-        startActivity(intent);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent=new Intent(getContext(), Main.class);
+                startActivity(intent);
+            }
+        }, 1000);
     }
 
     private void sync(){
@@ -180,12 +183,12 @@ public class DashboardFragment extends Fragment {
         call.enqueue(new Callback<URL>() {
             @Override
             public void onResponse(Call<URL> call, Response<URL> response) {
-                Toast.makeText(getContext(), response.message(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onFailure(Call<URL> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -197,7 +200,14 @@ public class DashboardFragment extends Fragment {
                 for(String b:links)
                     uploadURL(b);
             }
-        }, 200);
+        }, 1500);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), "Synced", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
 
     }
 
@@ -214,7 +224,7 @@ public class DashboardFragment extends Fragment {
         call.enqueue(new Callback<URL>() {
             @Override
             public void onResponse(Call<URL> call, Response<URL> response) {
-                Toast.makeText(getContext(), response.message(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

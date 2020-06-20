@@ -22,6 +22,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         TinyDB tinyDB=new TinyDB(this);
         tinyDB.putBoolean("State", true);
+        tinyDB.putInt("View",0);
 
         button=findViewById(R.id.get_started);
         button.setOnClickListener(new View.OnClickListener() {

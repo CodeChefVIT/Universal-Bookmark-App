@@ -3,14 +3,16 @@ package com.example.bookmark.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,27 +32,27 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
+public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
 
     private ArrayList<String> urls;
     private Context context;
 
-    public Adapter2(Context context, ArrayList<String> urls){
+    public Adapter3(Context context, ArrayList<String> urls){
         this.context=context;
         this.urls=urls;
     }
 
     @NonNull
     @Override
-    public Adapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Adapter3.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.item2, parent, false);
-        return new Adapter2.ViewHolder((view));
+        return new Adapter3.ViewHolder((view));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Adapter2.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final Adapter3.ViewHolder holder, final int position) {
 
-        String url=urls.get(position);
+        final String url=urls.get(position);
         String site=getWebsite(url);
         holder.website.setText(site);
         holder.link.setText(url);
@@ -104,6 +106,32 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             }
         });
 
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                PopupMenu popupMenu=new PopupMenu(context, holder.itemView);
+                popupMenu.getMenuInflater().inflate(R.menu.menu3, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.addEnt:
+                                urls.set(position, url+"instagram");
+                                break;
+                            case R.id.addRes:
+                                urls.set(position, url+"medium");
+                                break;
+                        }
+                        TinyDB tinyDB=new TinyDB(context);
+                        tinyDB.putListString("Links", urls);
+                        return true;
+                    }
+                });
+                popupMenu.show();
+                return true;
+            }
+        });
     }
 
     @Override

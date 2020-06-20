@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity {
                     tinyDB.putString("Token", response.body().getAuth_token());
                     Intent intent=new Intent(Login.this, Main.class);
                     startActivity(intent);
+                    finish();
                 }
                 else
                     Toast.makeText(Login.this, "User not found", Toast.LENGTH_SHORT).show();
