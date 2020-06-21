@@ -145,8 +145,8 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
                     site = firstLetter.toUpperCase() + site.substring(1, site.length() - 1);
                     break;
                 }
-                return site;
             }
+	    return site;
         }
         else{
             for(i=0;i<url.length()-2;i++){
