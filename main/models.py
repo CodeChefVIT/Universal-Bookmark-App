@@ -7,5 +7,5 @@ import uuid
 class URLData(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    url = models.CharField(max_length=200)
+    url = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

@@ -16,9 +16,6 @@ from rest_framework.views import APIView
 def home(response):
     return render(response, "home.html", {})
 
-# 200 - status : verified
-# 201 - status : added
-
 class URLAdder(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = [JSONParser]
@@ -34,9 +31,8 @@ class URLAdder(APIView):
         if obj.is_valid():
             obj.save()
             return Response({
-                'status' : 'added'
+                "status" : "added",
             },status=201)
-
 
 class URLModifier(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -58,6 +54,19 @@ class URLDelete(APIView):
         try:    
             obj = URLData.objects.filter(id=pk)
             obj.delete()
-            return Response(status=203)
+            return Response({
+                "status" : "deleted"
+                },status=203)
+        except:
+            return Response(status=404)
+
+class URLDeleteAll(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [JSONParser]
+
+    def get(self, request):
+        try:
+            URLData.objects.filter(user=request.user.id).delete()
+            return Response(status=204)
         except:
             return Response(status=404)
