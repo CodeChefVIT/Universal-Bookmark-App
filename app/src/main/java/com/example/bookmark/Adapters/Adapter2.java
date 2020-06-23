@@ -127,6 +127,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             link=itemView.findViewById(R.id.link);
         }
     }
+
     private String getWebsite(String url){
         int i, flag=0;
         String site="";
@@ -134,6 +135,14 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
             return "Youtube";
         if(url.contains("stack"))
             return "StackOverflow";
+        if(url.contains("flipkart"))
+            return "Flipkart";
+        if(url.contains("bookmyshow"))
+            return "BookMyShow";
+        if(url.contains("makemytrip"))
+            return "MakeMyTrip";
+        if(url.contains("spotify"))
+            return "Spotify";
         if(url.contains("www")) {
             for (i = 0; i < url.length() - 1; i++) {
                 if (url.charAt(i) == '.')
@@ -146,12 +155,12 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
                     break;
                 }
             }
-	    return site;
+            return site;
         }
         else{
             for(i=0;i<url.length()-2;i++){
                 if(url.substring(i,i+2).equals("//"))
-                    return url.substring(i+2, url.indexOf('.'));
+                    return url.substring(i+2,i+3).toUpperCase()+ url.substring(i+3, url.indexOf('.'));
             }
         }
         return site;
