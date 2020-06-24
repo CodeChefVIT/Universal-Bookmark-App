@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/gradient"
     android:padding="20dp"
@@ -31,39 +32,73 @@
         android:layout_marginTop="20dp"
         android:textSize="18sp"/>
 
-    <EditText
-        android:id="@+id/email_input"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
-        android:textColor="@android:color/white"
+        app:hintTextAppearance="@style/MyHintStyle"
+        style="@style/LoginTextInputLayoutStyle"
         android:textColorHint="@android:color/white"
-        android:backgroundTint="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:hint="Email"
-        android:layout_gravity="center_horizontal"/>
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/username_input"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/mail_icon"
+            android:drawablePadding="8dp"
+            android:textColor="#fff"
+            android:inputType="textEmailAddress"
+            android:id="@+id/email_input"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:hint="Username"
-        android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:backgroundTint="@android:color/white"
+        style="@style/LoginTextInputLayoutStyle"
+        app:hintTextAppearance="@style/MyHintStyle"
         android:layout_height="wrap_content"
+        android:singleLine="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp">
 
-    <EditText
-        android:id="@+id/pass_input"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/user_icon"
+            android:drawablePadding="8dp"
+            android:textColor="#fff"
+            android:id="@+id/username_input"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:inputType="textPassword"
-        android:textColor="@android:color/white"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#fff"
+        style="@style/LoginTextInputLayoutStyle"
+        app:hintTextAppearance="@style/MyHintStyle"
         android:textColorHint="@android:color/white"
-        android:backgroundTint="@android:color/white"
         android:hint="Password"
+        android:singleLine="true"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:drawableStart="@drawable/pass_icon"
+            android:drawablePadding="8dp"
+            android:inputType="textPassword"
+            android:id="@+id/pass_input"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
         android:layout_width="40dp"

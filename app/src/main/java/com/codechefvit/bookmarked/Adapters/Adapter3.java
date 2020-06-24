@@ -169,6 +169,8 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
             return "MakeMyTrip";
         if(url.contains("spotify"))
             return "Spotify";
+        if(url.contains("wikipedia") || url.contains("wiki"))
+            return "Wikipedia";
         if(url.contains("www")) {
             for (i = 0; i < url.length() - 1; i++) {
                 if (url.charAt(i) == '.')
