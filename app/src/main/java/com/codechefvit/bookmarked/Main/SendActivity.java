@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.codechefvit.bookmarked.Backend.TinyDB;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -39,12 +40,12 @@ public class SendActivity extends AppCompatActivity {
 
                 String b=getAddress(url);
                 ArrayList<String> temp=new ArrayList<>();
-                temp.add(b);
-                temp.addAll(urls);
 
-                tinyDB.putListString("Links", temp);
-
-
+                if(!urls.contains(b)) {
+                    temp.add(b);
+                    temp.addAll(urls);
+                    tinyDB.putListString("Links", temp);
+                }
             }
         }
     }
