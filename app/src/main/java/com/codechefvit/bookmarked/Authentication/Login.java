@@ -16,6 +16,7 @@ import com.codechefvit.bookmarked.Backend.TinyDB;
 import com.codechefvit.bookmarked.Backend.Users;
 import com.codechefvit.bookmarked.Main.Main;
 import com.codechefvit.bookmarked.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +35,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final EditText username=findViewById(R.id.name_input);
-        final EditText password=findViewById(R.id.pass_input);
+        final TextInputEditText password=findViewById(R.id.pass_input);
         Button login=findViewById(R.id.login);
         TextView skip=findViewById(R.id.skip);
         TextView register=findViewById(R.id.register_here);

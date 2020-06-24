@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -66,6 +67,13 @@ public class Register extends AppCompatActivity {
                 if(flag==0) {
                     tooltip.show();
                     flag = 1;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            tooltip.dismiss();
+                            flag=0;
+                        }
+                    }, 4000);
                 }
             }
         });
@@ -115,6 +123,9 @@ public class Register extends AppCompatActivity {
         pass=password.getText().toString().trim();
         mail=email.getText().toString();
 
+        if(name.equals("")||pass.equals("")||mail.equals(""))
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+
         final Users user=new Users(mail, name, pass);
         Call<Users> call=apiHolder.createUser(user);
         call.enqueue(new Callback<Users>() {
@@ -127,10 +138,9 @@ public class Register extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
-
             @Override
             public void onFailure(Call<Users> call, Throwable t) {
-                Toast.makeText(Register.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "Can't connect at the moment. Please try again later.", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
