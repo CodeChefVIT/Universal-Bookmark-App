@@ -162,6 +162,14 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
             return "Youtube";
         if(url.contains("stack"))
             return "StackOverflow";
+        if(url.contains("flipkart"))
+            return "Flipkart";
+        if(url.contains("bookmyshow"))
+            return "BookMyShow";
+        if(url.contains("makemytrip"))
+            return "MakeMyTrip";
+        if(url.contains("spotify"))
+            return "Spotify";
         if(url.contains("www")) {
             for (i = 0; i < url.length() - 1; i++) {
                 if (url.charAt(i) == '.')
@@ -174,7 +182,7 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
                     break;
                 }
             }
-	    return site;
+            return site;
         }
         else{
             for(i=0;i<url.length()-2;i++){
