@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.bookmark"
+        applicationId "com.codechefvit.bookmarked"
         minSdkVersion 25
         targetSdkVersion 28
         versionCode 1
@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.vihtarb:tooltip:0.1.9'
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bookmark">
+    package="com.codechefvit.bookmarked">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,25 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Main.TestActivity">
+        <activity android:name="com.codechefvit.bookmarked.Main.TestActivity">
 
         </activity>
-        <activity android:name=".Main.Main">
+        <activity android:name="com.codechefvit.bookmarked.Main.Main">
 
         </activity>
-        <activity android:name=".Authentication.Register"
+        <activity android:name="com.codechefvit.bookmarked.Authentication.Register"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Authentication.Login"
+        <activity android:name="com.codechefvit.bookmarked.Authentication.Login"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Starters.TutorialActivity"
+            android:name="com.codechefvit.bookmarked.Starters.TutorialActivity"
             android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Starters.TitleActivity"
+            android:name="com.codechefvit.bookmarked.Starters.TitleActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme"
             android:configChanges="orientation"
@@ -44,7 +44,7 @@
 
         </activity>
         <activity
-            android:name=".Main.SendActivity"
+            android:name="com.codechefvit.bookmarked.Main.SendActivity"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
