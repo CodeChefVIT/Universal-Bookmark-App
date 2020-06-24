@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         tinyDB = new TinyDB(getContext());
         urls=new ArrayList<>();
         for(String link:tinyDB.getListString("Links"))
-            if(link.contains("stack")||link.contains("geek")||link.contains("news")||link.contains("medium")||link.contains("blog"))
+            if(link.contains("stack")||link.contains("github")||link.contains("geek")||link.contains("news")||link.contains("medium")||link.contains("blog"))
                 urls.add(link);
 
         final View root = inflater.inflate(R.layout.activity_main, container, false);
