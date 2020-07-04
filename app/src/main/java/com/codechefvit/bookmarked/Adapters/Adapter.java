@@ -85,8 +85,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             webView.getSettings().setUseWideViewPort(true);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.getSettings().setLoadWithOverviewMode(true);
-            WebSettings settings = webView.getSettings();
-            settings.setDomStorageEnabled(true);
+            webView.getSettings().setDomStorageEnabled(true);
         }
     }
 

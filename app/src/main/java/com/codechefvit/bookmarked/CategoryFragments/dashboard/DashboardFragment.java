@@ -113,18 +113,21 @@ public class DashboardFragment extends Fragment {
             return root;
 
     }
+
     private void changeView(){
         if(flag==0){
             Adapter2 adapter2=new Adapter2(getContext(), urls);
             recyclerView.setAdapter(adapter2);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             tinyDB.putInt("View", 1);
+            flag=1;
         }
         else{
             Adapter adapter=new Adapter(getContext(), urls);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             tinyDB.putInt("View", 0);
+            flag=0;
         }
     }
 

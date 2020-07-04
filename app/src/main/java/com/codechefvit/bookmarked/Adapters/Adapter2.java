@@ -180,9 +180,11 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder> {
         call.enqueue(new Callback<ImageURL>() {
             @Override
             public void onResponse(Call<ImageURL> call, Response<ImageURL> response) {
-                if(!response.message().equals("Not Found")) {
-                    List<Icon> URLs = response.body().getIcons();
-                    Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                if(response.isSuccessful()) {
+                    if (!response.message().equals("Not Found")) {
+                        List<Icon> URLs = response.body().getIcons();
+                        Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                    }
                 }
             }
 
