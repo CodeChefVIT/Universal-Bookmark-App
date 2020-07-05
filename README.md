@@ -8,14 +8,14 @@
 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
-
+[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
 
 
 ## Features
+-  Bookmarked serves as a single destination to store all your interesting data.
 -  Posts can be cantegorized into Entertainment, Research and miscellaneous, and can be directly opened into respective apps or browsers upon click.
-
+-  You can sync all your data using an account, and retrieve it on other devices.
 
 
 
