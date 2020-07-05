@@ -157,6 +157,8 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
     private String getWebsite(String url){
         int i, flag=0;
         String site="";
+	if(url.contains("medium"))
+	    return "Medium";
         if(url.contains("youtu"))
             return "Youtube";
         if(url.contains("stack"))
@@ -197,7 +199,7 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
     private void setImage(final ImageView image, String url){
 
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://besticon-demo.herokuapp.com/")
+                .baseUrl("https://i.olsh.me/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
