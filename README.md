@@ -12,7 +12,7 @@
 
 # Screenshots
 
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%201.jpeg)
+![screenshot](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%201.jpeg)
 
 ![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%202.jpeg)
 
