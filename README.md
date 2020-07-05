@@ -8,19 +8,12 @@
 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
+
 [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
 # Screenshots
 
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%201.jpeg)
-
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%202.jpeg)
-
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%203.jpeg)
-
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%204.jpeg)
-
-![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%205.jpeg)
+![al_text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/feature_image.jpg)
 
 
 ## Features
@@ -30,7 +23,7 @@
 
 
 ## Instructions to run
-Install '''Bookmarked.apk''' and open the application.
+Install and run the "Bookmarked" apk file.
 
 ## Contributors
 - <a href="https://github.com/Ishan-001">Ishan Khandelwal</a>
