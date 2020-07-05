@@ -29,15 +29,6 @@
 -  You can sync all your data using an account, and retrieve it on other devices.
 
 
-
-## Screenshots
-<img src="https://ibb.co/xhfPhQJ" alt="No posts/links saved">
-<img src="https://ibb.co/jGmDSY2" alt="Saved post from Instagram">
-<img src="https://ibb.co/0c2398F" alt="Posts saved from multiple networks">
-
-
-
-
 ## Instructions to run
 Install '''Bookmarked.apk''' and open the application.
 
