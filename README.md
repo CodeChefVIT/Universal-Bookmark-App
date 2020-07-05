@@ -8,11 +8,12 @@
 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
+
 [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
 # Screenshots
 
-![al_text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/feature_image.jpeg)
+![al_text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/feature_image.jpg)
 
 
 ## Features
@@ -21,17 +22,8 @@
 -  You can sync all your data using an account, and retrieve it on other devices.
 
 
-
-## Screenshots
-<img src="https://ibb.co/xhfPhQJ" alt="No posts/links saved">
-<img src="https://ibb.co/jGmDSY2" alt="Saved post from Instagram">
-<img src="https://ibb.co/0c2398F" alt="Posts saved from multiple networks">
-
-
-
-
 ## Instructions to run
-Install '''Bookmarked.apk''' and open the application.
+Install and run the "Bookmarked" apk file.
 
 ## Contributors
 - <a href="https://github.com/Ishan-001">Ishan Khandelwal</a>
