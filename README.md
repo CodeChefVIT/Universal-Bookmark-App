@@ -12,11 +12,15 @@
 
 # Screenshots
 
-https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%201.jpeg
-https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%202.jpeg
-https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%203.jpeg
-https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%204.jpeg
-https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%205.jpeg
+![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%201.jpeg)
+
+![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%202.jpeg)
+
+![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%203.jpeg)
+
+![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%204.jpeg)
+
+![alt text](https://github.com/Ishan-001/Universal-Bookmark-App/blob/master/Image%205.jpeg)
 
 
 ## Features
