@@ -157,8 +157,8 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
     private String getWebsite(String url){
         int i, flag=0;
         String site="";
-	if(url.contains("medium"))
-	    return "Medium";
+        if(url.contains("medium"))
+            return "Medium";
         if(url.contains("youtu"))
             return "Youtube";
         if(url.contains("stack"))
