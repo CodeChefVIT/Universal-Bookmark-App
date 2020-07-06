@@ -7,10 +7,10 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,8 +38,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, final int position) {
-        holder.webView.setWebViewClient(new WebViewClient());
+    public void onBindViewHolder(@NonNull final Adapter.ViewHolder holder, final int position) {
+        holder.webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageCommitVisible(WebView view, String url) {
+                super.onPageCommitVisible(view, url);
+                holder.progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
         holder.webView.loadUrl(urls.get(position));
 
         holder.goTo.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +80,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         WebView webView;
         ImageView goTo, bin;
+        ProgressBar progressBar;
 
         @SuppressLint("SetJavaScriptEnabled")
         ViewHolder(@NonNull View itemView) {
@@ -81,6 +88,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             webView=itemView.findViewById(R.id.webview);
             goTo=itemView.findViewById(R.id.go_to);
             bin=itemView.findViewById(R.id.bin);
+            progressBar=itemView.findViewById(R.id.webview_progress);
 
             webView.getSettings().setUseWideViewPort(true);
             webView.getSettings().setJavaScriptEnabled(true);

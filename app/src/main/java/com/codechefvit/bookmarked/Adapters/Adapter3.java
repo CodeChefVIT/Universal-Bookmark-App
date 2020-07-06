@@ -157,40 +157,23 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
     private String getWebsite(String url){
         int i, flag=0;
         String site="";
-        if(url.contains("medium"))
-            return "Medium";
         if(url.contains("youtu"))
             return "Youtube";
-        if(url.contains("stack"))
+        if(url.contains("stackoverflow"))
             return "StackOverflow";
-        if(url.contains("flipkart"))
-            return "Flipkart";
-        if(url.contains("bookmyshow"))
-            return "BookMyShow";
-        if(url.contains("makemytrip"))
-            return "MakeMyTrip";
-        if(url.contains("spotify"))
-            return "Spotify";
-        if(url.contains("wikipedia") || url.contains("wiki"))
+        if(url.contains("twitter"))
+            return "Twitter";
+        if(url.contains("wikipedia"))
             return "Wikipedia";
-        if(url.contains("www")) {
-            for (i = 0; i < url.length() - 1; i++) {
-                if (url.charAt(i) == '.')
-                    flag++;
-                if (flag == 1)
-                    site = site + url.charAt(i + 1);
-                if (flag == 2) {
-                    String firstLetter = site.substring(0, 1);
-                    site = firstLetter.toUpperCase() + site.substring(1, site.length() - 1);
-                    break;
-                }
-            }
-            return site;
-        }
-        else{
-            for(i=0;i<url.length()-2;i++){
-                if(url.substring(i,i+2).equals("//"))
-                    return url.substring(i+2,i+3).toUpperCase()+ url.substring(i+3, url.indexOf('.'));
+        for (i = 0; i < url.length() - 1; i++) {
+            if (url.charAt(i) == '.')
+                flag++;
+            if (flag == 1)
+                site = site + url.charAt(i + 1);
+            if (flag == 2) {
+                String firstLetter = site.substring(0, 1);
+                site = firstLetter.toUpperCase() + site.substring(1, site.length() - 1);
+                break;
             }
         }
         return site;
@@ -211,7 +194,9 @@ public class Adapter3 extends RecyclerView.Adapter<Adapter3.ViewHolder> {
                 if(response.isSuccessful()) {
                     if (!response.message().equals("Not Found")) {
                         List<Icon> URLs = response.body().getIcons();
-                        Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                        if(!URLs.isEmpty()) {
+                            Picasso.get().load(URLs.get(0).getUrl()).into(image);
+                        }
                     }
                 }
             }
