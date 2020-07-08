@@ -69,6 +69,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="300dp"
+		    android:singleLine="True"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user_icon"
                     android:drawablePadding="8dp"
