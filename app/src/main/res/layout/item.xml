@@ -48,4 +48,17 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:id="@+id/webview_progress"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

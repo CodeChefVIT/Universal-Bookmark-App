@@ -1,6 +1,8 @@
 package com.codechefvit.bookmarked.CategoryFragments.home;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -26,10 +30,13 @@ import com.codechefvit.bookmarked.Backend.URL;
 import com.codechefvit.bookmarked.Main.Main;
 import com.codechefvit.bookmarked.R;
 import com.codechefvit.bookmarked.Backend.TinyDB;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,13 +49,17 @@ public class HomeFragment extends Fragment {
     private TinyDB tinyDB;
     private int flag;
     private ArrayList<String> urls;
+    private Adapter adapter;
+    private Adapter2 adapter2;
+    private ArrayList<String> links;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              final ViewGroup container, Bundle savedInstanceState) {
 
         tinyDB = new TinyDB(getContext());
         urls=new ArrayList<>();
-        for(String link:tinyDB.getListString("Links"))
+        links=tinyDB.getListString("Links");
+        for(String link:links)
             if(link.contains("stack")||link.contains("github")||link.contains("geek")||link.contains("news")||link.contains("medium")||link.contains("blog"))
                 urls.add(link);
 
@@ -63,15 +74,18 @@ public class HomeFragment extends Fragment {
 
         flag=tinyDB.getInt("View");
         if(flag==1){
-            Adapter2 adapter2=new Adapter2(getContext(), urls);
+            adapter2=new Adapter2(getContext(), urls);
             recyclerView.setAdapter(adapter2);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
         else{
-            Adapter adapter=new Adapter(getContext(), urls);
+            adapter=new Adapter(getContext(), urls);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+
+        ItemTouchHelper itemTouchHelper=new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         Toolbar toolbar=root.findViewById(R.id.bar);
 
@@ -112,6 +126,61 @@ public class HomeFragment extends Fragment {
         return root;
 
     }
+
+    private String deletedURL=null;
+
+    private ItemTouchHelper.SimpleCallback simpleCallback=new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            final int position=viewHolder.getAdapterPosition();
+
+            switch (direction){
+                case ItemTouchHelper.RIGHT:
+                    deletedURL=urls.get(position);
+                    urls.remove(position);
+                    links.remove(position);
+                    if(flag==1) adapter2.notifyItemRemoved(position);
+                    else adapter.notifyItemRemoved(position);
+                    tinyDB.putListString("Links", links);
+                    Snackbar.make(recyclerView, deletedURL, BaseTransientBottomBar.LENGTH_LONG)
+                            .setAction("Undo", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    urls.add(position, deletedURL);
+                                    links.add(position, deletedURL);
+                                    if(flag==1) adapter2.notifyItemRemoved(position);
+                                    else adapter.notifyItemRemoved(position);
+                                    tinyDB.putListString("Links", links);
+                                }
+                            }).show();
+                    break;
+                case ItemTouchHelper.LEFT:
+                    Uri uri = Uri.parse(urls.get(position));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                    break;
+            }
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                    .addSwipeRightActionIcon(R.drawable.delete)
+                    .addSwipeLeftActionIcon(R.drawable.open)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
+
     private void changeView(){
         if(flag==0){
             Adapter2 adapter2=new Adapter2(getContext(), urls);

@@ -69,10 +69,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="300dp"
-		    android:singleLine="True"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user_icon"
                     android:drawablePadding="8dp"
+                    android:singleLine="true"
                     android:id="@+id/name_input"/>
 
             </com.google.android.material.textfield.TextInputLayout>
