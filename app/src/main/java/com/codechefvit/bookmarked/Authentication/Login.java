@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
         TextView register=findViewById(R.id.register_here);
         progressBar=findViewById(R.id.progress);
 
-        Retrofit loginRetrofit=new  Retrofit.Builder()
+        Retrofit loginRetrofit=new Retrofit.Builder()
                 .baseUrl("http://ubmcc.herokuapp.com/auth/token/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
