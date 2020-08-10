@@ -64,7 +64,7 @@
                 android:layout_marginTop="20dp"
                 android:singleLine="true"
                 android:hint="Username"
-                android:textColorHint="@android:color/black"
+                android:textColorHint="#979696"
                 android:layout_gravity="center_horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user_icon"
                     android:drawablePadding="8dp"
+                    android:textStyle="bold"
                     android:singleLine="true"
                     android:id="@+id/name_input"/>
 
@@ -80,9 +81,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
                 android:hint="Password"
-                app:boxStrokeColor="@color/colorPrimary"
                 app:passwordToggleEnabled="true"
-                android:textColorHint="@android:color/black"
+                android:textColorHint="#979696"
                 app:passwordToggleTint="@color/colorPrimary"
                 android:singleLine="true"
                 android:layout_height="wrap_content"
@@ -93,6 +93,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/pass_input"
+                    android:textStyle="bold"
                     android:drawableStart="@drawable/pass_icon"
                     android:drawablePadding="8dp"
                     android:inputType="textPassword"/>
