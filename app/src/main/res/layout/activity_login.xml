@@ -55,16 +55,15 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/progress"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:layout_gravity="center_horizontal"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:singleLine="true"
-                android:hint="Username"
-                android:textColorHint="#979696"
                 android:layout_gravity="center_horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -72,6 +71,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user_icon"
                     android:drawablePadding="8dp"
+                    android:hint="Username"
+                    android:textColorHint="#979696"
                     android:textStyle="bold"
                     android:singleLine="true"
                     android:id="@+id/name_input"/>
@@ -80,9 +81,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
-                android:hint="Password"
                 app:passwordToggleEnabled="true"
-                android:textColorHint="#979696"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:passwordToggleTint="@color/colorPrimary"
                 android:singleLine="true"
                 android:layout_height="wrap_content"
@@ -94,6 +94,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/pass_input"
                     android:textStyle="bold"
+                    android:textColorHint="#979696"
+                    android:hint="Password"
                     android:drawableStart="@drawable/pass_icon"
                     android:drawablePadding="8dp"
                     android:inputType="textPassword"/>
@@ -120,25 +122,25 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="cursive"
                 android:layout_gravity="center_horizontal"
-                android:text="New? Register here!"
+                android:text="New? Register here"
                 android:textSize="16sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="or"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="cursive"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Skip"
-                    android:textStyle="bold"
-                    android:layout_gravity="end"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/skip"
-                    android:fontFamily="sans-serif-condensed"/>
-
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue without saving"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/skip"
+                android:textSize="16sp"
+                android:fontFamily="cursive"/>
 
         </LinearLayout>
 

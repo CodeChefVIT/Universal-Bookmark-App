@@ -122,6 +122,7 @@ public class DashboardFragment extends Fragment {
                 public void onRefresh() {
                     Intent intent = new Intent(getContext(), Main.class);
                     startActivity(intent);
+                    getActivity().finish();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             });
