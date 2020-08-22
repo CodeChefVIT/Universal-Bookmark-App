@@ -20,31 +20,53 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:textColor="#fff"
-        android:text="Here's a short tutorial to\nget you started..."
+        android:fontFamily="cursive"
+        android:text="Here's a short tutorial to\nget you started"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
         <ImageView
-            android:layout_width="351dp"
-            android:layout_height="409dp"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:src="@drawable/tutorial1" />
 
         <ImageView
-            android:layout_width="364dp"
-            android:layout_height="451dp"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="60dp"
-            android:src="@drawable/tutroial2" />
+            android:src="@drawable/tutorial2" />
 
         <ImageView
-            android:layout_width="346dp"
-            android:layout_height="630dp"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:src="@drawable/tutorial3" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tutorial4" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tutorial5" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tutorial6" />
 
         <Button
             android:layout_width='match_parent'
@@ -55,8 +77,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/button_back"
-            android:text="Get Started   "
-            android:textAlignment="center"
+            android:text="Get Started"
             android:textAllCaps="false"
             android:textColor="@drawable/button_text_back"
             android:textSize="20sp"
